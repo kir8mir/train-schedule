@@ -1,5 +1,5 @@
 import { TrainsService } from './trains.service';
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { RouteInfo } from './train.model';
 
 @Controller('trains')
@@ -12,5 +12,15 @@ export class TrainsController {
     @Body('routeInfo') trainRouteInfo: RouteInfo,
   ): any {
     return this.trainsService.addTrain(trainName, trainRouteInfo);
+  }
+
+  @Get()
+  getAllTrains() {
+    return this.trainsService.getAllTrains();
+  }
+
+  @Get(':trainId')
+  getTrain(@Param('trainId') trainId: string) {
+    return this.trainsService.getTrain(trainId);
   }
 }
