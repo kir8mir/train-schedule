@@ -1,0 +1,14 @@
+.train-info {
+  display: flex;
+  width: 100%;
+  
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: azure;
+    border: 1px solid black;
+    width: 25%;
+
+  }
+}
