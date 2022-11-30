@@ -15,35 +15,35 @@ export class TrainsController {
   constructor(private readonly trainsService: TrainsService) {}
 
   @Post()
-  addTrain(
+  async addTrain(
     @Body('name') trainName: string,
     @Body('routeInfo') trainRouteInfo: RouteInfo,
-  ): any {
-    return this.trainsService.addTrain(trainName, trainRouteInfo);
+  ): Promise<any> {
+    return await this.trainsService.addTrain(trainName, trainRouteInfo);
   }
 
   @Get()
-  getAllTrains() {
-    return this.trainsService.getAllTrains();
+  async getAllTrains() {
+    return await this.trainsService.getAllTrains();
   }
 
   @Get(':trainId')
-  getTrain(@Param('trainId') trainId: string) {
-    return this.trainsService.getTrain(trainId);
+  async getTrain(@Param('trainId') trainId: string) {
+    return await this.trainsService.getTrain(trainId);
   }
 
   @Patch(':trainId')
-  updateTrain(
+  async updateTrain(
     @Param('trainId') trainId: string,
     @Body('name') trainName: string,
     @Body('routeInfo') routeInfo: RouteInfo,
   ) {
-    return this.trainsService.updateTrain(trainId, trainName, routeInfo);
+    return await this.trainsService.updateTrain(trainId, trainName, routeInfo);
   }
 
   @Delete(':trainId')
-  removeTrain(@Param('trainId') trainId: string) {
-    this.trainsService.removeTrain(trainId);
+  async removeTrain(@Param('trainId') trainId: string) {
+    await this.trainsService.removeTrain(trainId);
 
     return 'Deleted Successful';
   }

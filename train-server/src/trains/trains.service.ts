@@ -1,31 +1,45 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Train, RouteInfo } from './train.model';
-import { v4 as uuid } from 'uuid';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class TrainsService {
   trains: Train[] = [];
 
-  addTrain(name: string, routeInfo: RouteInfo) {
-    const newTrain = new Train(uuid(), name, routeInfo);
-    this.trains.push(newTrain);
+  constructor(
+    @InjectModel('Train') private readonly trainModel: Model<Train>,
+  ) {}
+
+  async addTrain(name: string, routeInfo: RouteInfo) {
+    const newTrain = new this.trainModel({ name, routeInfo });
+    await newTrain.save();
 
     return newTrain;
   }
 
-  getAllTrains() {
-    return [...this.trains];
+  async getAllTrains() {
+    const trains = await this.trainModel.find().exec();
+
+    return trains.map((train) => ({
+      id: train.id,
+      name: train.name,
+      routeInfo: train.routeInfo,
+    }));
   }
 
-  getTrain(trainId: string) {
-    const train = this.findTrain(trainId)[0];
+  async getTrain(trainId: string) {
+    const train = await this.findTrain(trainId);
 
-    return { ...train };
+    return await {
+      id: train.id,
+      name: train.name,
+      routeInfo: train.routeInfo,
+    };
   }
 
-  updateTrain(trainId: string, name: string, routeInfo: RouteInfo) {
-    const [train, trainIndex] = this.findTrain(trainId);
-    const updatedTrain = { ...train };
+  async updateTrain(trainId: string, name: string, routeInfo: RouteInfo) {
+    const updatedTrain = await this.findTrain(trainId);
 
     if (name) {
       updatedTrain.name = name;
@@ -34,28 +48,27 @@ export class TrainsService {
     if (routeInfo) {
       updatedTrain.routeInfo = routeInfo;
     }
-
-    this.trains[trainIndex] = updatedTrain;
-
+    updatedTrain.save();
     return updatedTrain;
   }
 
-  removeTrain(trainId: string) {
-    const [_, trainIndex] = this.findTrain(trainId);
-
-    this.trains.splice(trainIndex, 1);
+  async removeTrain(trainId: string) {
+    await this.trainModel.deleteOne({ _id: trainId }).exec();
   }
 
-  private findTrain(trainId: string): [Train, number] {
-    const trainIndex = this.trains.findIndex(
-      (singleTrain) => singleTrain.id === trainId,
-    );
-    const train = this.trains.find((singleTrain) => singleTrain.id === trainId);
+  private async findTrain(trainId: string): Promise<Train> {
+    let train;
+
+    try {
+      train = await this.trainModel.findById(trainId);
+    } catch (error) {
+      throw new NotFoundException('This train are not existing');
+    }
 
     if (!train) {
       throw new NotFoundException('This train are not existing');
     }
 
-    return [train, trainIndex];
+    return train;
   }
 }
