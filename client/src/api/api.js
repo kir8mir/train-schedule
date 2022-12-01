@@ -5,3 +5,13 @@ export async function getTrains() {
 
   return await trains;
 }
+
+export async function addTrain(name, from, to, departure, arrival) {
+  await axios.post('https://train-server.onrender.com/trains', {
+    name,
+    from,
+    to,
+    departure,
+    arrival
+  });
+}

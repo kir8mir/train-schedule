@@ -1,5 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 .react-datepicker-wrapper {
-  width: 23%;
+  width: 100%;
 }
 
 .App {

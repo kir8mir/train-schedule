@@ -2,14 +2,15 @@
   width: 100%;
 
   .titles {
-    display: flex;
+    display: grid;
     width: 100%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
 
     &__number {
       padding: 10px;
       background-color: blanchedalmond;
       border: 1px solid black;
-      width: 33%;
+      width: 100%;
     }
   }
 }

@@ -10,8 +10,6 @@ export const Search: FC = () => {
   let handleColor = (time: Date) => {
     return time.getHours() > 12 ? "text-success" : "text-error";
   };
-
-  console.log(typeof startDate, startDate);
   
   return (
     <section className="search">

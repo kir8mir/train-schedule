@@ -1,6 +1,7 @@
 .train-info {
-  display: flex;
+  display: grid;
   width: 100%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   
   &__item {
     display: flex;
@@ -8,7 +9,6 @@
     padding: 10px;
     background-color: azure;
     border: 1px solid black;
-    width: 33%;
-
+    width: 100%;
   }
 }
