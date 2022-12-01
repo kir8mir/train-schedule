@@ -35,6 +35,10 @@
       font-size: 20px;
       font-weight: 600;
       height: 100%;
+
+      &:hover {
+        background-color:darksalmon;
+      }
     }
   }
 }
