@@ -3,7 +3,11 @@ import './AddTrain.scss';
 import DatePicker from 'react-datepicker';
 import { addTrain } from '../../api/api';
 
-export const AddTrain: FC = () => {
+interface Props {
+  setFilteredTrains: any;
+}
+
+export const AddTrain:FC<Props> = ({setFilteredTrains}) => {
   const [newName, setNewName] = useState('');
   const [newFrom, setNewFrom] = useState('');
   const [newTo, setNewTo] = useState('');
@@ -26,6 +30,13 @@ export const AddTrain: FC = () => {
         setNewName('');
         setNewFrom('');
         setNewTo('');
+        setFilteredTrains((arr: any) => [...arr, {
+          name: newName,
+          from: newFrom,
+          to: newTo,
+          departure: newDeparture,
+          arrival: newArrival,
+        }])
     } else {
       alert('Fill all sections');
     }

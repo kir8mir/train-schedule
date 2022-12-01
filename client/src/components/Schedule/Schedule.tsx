@@ -17,6 +17,7 @@ export const Schedule: FC<Props> = ({ trains, filteredTrains, setFilteredTrains 
   const [sortType, setSortType] = useState('NONE');
 
   const [upDown, setUpDown] = useState(false);
+  
 
   const sort = () => {
     switch (sortType) {
@@ -127,7 +128,7 @@ export const Schedule: FC<Props> = ({ trains, filteredTrains, setFilteredTrains 
 
       {
         newTrain
-          ? <AddTrain />
+          ? <AddTrain setFilteredTrains={setFilteredTrains} />
           : filteredTrains.length
             ? filteredTrains.map(train => (
               <TrainInfo key={train.id} train={train} />
