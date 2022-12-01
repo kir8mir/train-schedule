@@ -12,3 +12,6 @@
   - to: string,
   - departure: Date,
   - arrival: Date
+
+# Introduction
+Here is the simple trains schedule app, where you can ADD, CHANGE, DELETE, SEARCH and SORT every data 
