@@ -5,3 +5,5 @@
 - Nest.js
 - MongoDB/Mongoose
 - React
+
+# DB Train object structure
