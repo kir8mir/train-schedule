@@ -107,7 +107,7 @@ export const TrainInfo: FC<Props> = ({ train }) => {
         />
 
         <p className="date-time">
-          {`${departureDate.getUTCHours()}:${departureDate.getUTCMinutes().toString().length === 1 ? `0${departureDate.getUTCMinutes()}` : departureDate.getUTCMinutes()
+          {`${departureDate.getHours()}:${departureDate.getUTCMinutes().toString().length === 1 ? `0${departureDate.getUTCMinutes()}` : departureDate.getUTCMinutes()
             }`}
         </p>
       </div>
@@ -121,7 +121,7 @@ export const TrainInfo: FC<Props> = ({ train }) => {
           timeClassName={handleColor}
         />
         <p className="date-time">
-        {`${arrivalDate.getUTCHours()}:${arrivalDate.getUTCMinutes().toString().length === 1 ? `0${arrivalDate.getUTCMinutes()}` : arrivalDate.getUTCMinutes()
+        {`${arrivalDate.getHours()}:${arrivalDate.getUTCMinutes().toString().length === 1 ? `0${arrivalDate.getUTCMinutes()}` : arrivalDate.getUTCMinutes()
             }`}
         </p>
       </div>
