@@ -59,7 +59,7 @@ export const TrainInfo: FC<Props> = ({ train }) => {
       className={classnames('train-info', {'none': isRemoved})}
     >
       <p
-        className="train-info__item"
+        className="train-info__item name"
         onClick={() => setShowInputName(true)}
       >
         {showInputName

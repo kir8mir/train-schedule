@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { getTrains } from './api/api';
 import { Train } from './_types/train';
@@ -11,31 +12,43 @@ import './_utils/normalize.css';
 function App() {
   const [trains, setTrains] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [filteredTrains, setFilteredTrains] = useState([...trains]);
-  const [startDate, setStartDate] = useState(new Date());
+  const [filteredTrains, setFilteredTrains] = useState([]);
 
-  const filter = () => {
-    const filtered = [...trains].filter(
-      (train: Train) => train.name.toLowerCase().includes(searchValue.toLowerCase()));
 
-    setFilteredTrains(filtered);
-  }
+  // const sort = () => {
+  //   switch (sortType) {
+  //     case 'NONE':
+  //       setFilteredTrains(filteredTrains);
+  //       break;
+  //     case 'NAME':
+  //       setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t1.name.localeCompare(t2.name)));
+  //       break;
+  //   }
+  // }
 
 
   useEffect(() => {
-    getTrains().then(res => setTrains(res.data));
-    filter();
-  }, [searchValue, trains, filteredTrains])
+    getTrains().then(res => {
+      setTrains(res.data)
+      if (!filteredTrains.length) {
+        setFilteredTrains(res.data);
+      }
+    });
+    console.log(filteredTrains);
+    
+    // sort();
+  }, [searchValue]);
 
   return (
     <div className="App">
       <Search
         setSearchValue={setSearchValue}
         searchValue={searchValue}
-        startDate={startDate}
-        setStartDate={setStartDate}
+        setFilteredTrains={setFilteredTrains}
+        trains={trains}
+
       />
-      <Schedule trains={filteredTrains} />
+      <Schedule filteredTrains={filteredTrains} trains={trains} setFilteredTrains={setFilteredTrains} />
     </div>
   );
 }

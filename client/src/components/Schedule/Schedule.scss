@@ -25,6 +25,7 @@
     display: grid;
     width: 100%;
     grid-template-columns: 20% 20% 20% 20% 20%;
+    cursor: pointer;
 
     &__number {
       padding: 10px;
