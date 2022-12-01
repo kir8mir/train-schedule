@@ -8,7 +8,6 @@ import {
   Get,
   Param,
 } from '@nestjs/common';
-import { RouteInfo } from './train.model';
 
 @Controller('trains')
 export class TrainsController {
@@ -17,9 +16,18 @@ export class TrainsController {
   @Post()
   async addTrain(
     @Body('name') trainName: string,
-    @Body('routeInfo') trainRouteInfo: RouteInfo,
+    @Body('from') from: string,
+    @Body('to') to: string,
+    @Body('departure') departure: Date,
+    @Body('arrival') arrival: Date,
   ): Promise<any> {
-    return await this.trainsService.addTrain(trainName, trainRouteInfo);
+    return await this.trainsService.addTrain(
+      trainName,
+      from,
+      to,
+      departure,
+      arrival,
+    );
   }
 
   @Get()
@@ -36,9 +44,19 @@ export class TrainsController {
   async updateTrain(
     @Param('trainId') trainId: string,
     @Body('name') trainName: string,
-    @Body('routeInfo') routeInfo: RouteInfo,
+    @Body('from') from: string,
+    @Body('to') to: string,
+    @Body('departure') departure: Date,
+    @Body('arrival') arrival: Date,
   ) {
-    return await this.trainsService.updateTrain(trainId, trainName, routeInfo);
+    return await this.trainsService.updateTrain(
+      trainId,
+      trainName,
+      from,
+      to,
+      departure,
+      arrival,
+    );
   }
 
   @Delete(':trainId')
