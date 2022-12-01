@@ -15,3 +15,17 @@ export async function addTrain(name, from, to, departure, arrival) {
     arrival
   });
 }
+
+export async function removeTrain(id) {
+  await axios.delete(`https://train-server.onrender.com/trains/${id}`);
+}
+
+export async function updateTrain(id, name, from, to, departure, arrival) {
+  await axios.patch(`https://train-server.onrender.com/trains/${id}`, {
+    name,
+    from,
+    to,
+    departure,
+    arrival
+  });
+}

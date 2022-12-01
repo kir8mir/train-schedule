@@ -1,4 +1,5 @@
 .train-info {
+  position: relative;
   display: grid;
   width: 100%;
   grid-template-columns: 20% 20% 20% 20% 20%;
@@ -11,4 +12,10 @@
     border: 1px solid black;
     width: 100%;
   }
+
+  &__item-remove {
+    position: absolute;
+    right: -5%;
+  }
+  
 }

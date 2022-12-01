@@ -2,29 +2,99 @@ import { FC, useState } from 'react';
 import './TrainInfo.scss';
 import DatePicker from 'react-datepicker';
 import { Train } from '../../_types/train';
+import { removeTrain, updateTrain } from '../../api/api';
 
 interface Props {
   train: Train;
 }
 
 export const TrainInfo: FC<Props> = ({ train }) => {
-  const { name, from, to, departure, arrival } = train;
+  const { id, name, from, to, departure, arrival } = train;
+
   const [departureDate, setDepartureDate] = useState(new Date(departure));
   const [arrivalDate, setArrivalDate] = useState(new Date(arrival));
 
-  console.log(departure);
+  const [showInputName, setShowInputName] = useState(false);
+  const [inputName, setInputName] = useState(name);
 
+  const [showInputFrom, setShowInputFrom] = useState(false);
+  const [inputFrom, setInputFrom] = useState(from);
+
+  const [showInputTo, setShowInputTo] = useState(false);
+  const [inputTo, setInputTo] = useState(to);
 
   let handleColor = (time: Date) => {
     return time.getHours() > 12 ? "text-success" : "text-error";
   };
 
+  const patchTrain = () => {
+    updateTrain(
+      id,
+      inputName,
+      inputFrom,
+      inputTo,
+      departureDate,
+      arrivalDate);
+
+    setShowInputName(false);
+    setShowInputFrom(false);
+    setShowInputTo(false)
+  }
+
+  const cancelPatching = () => {
+    setInputName(name);
+    setInputFrom(from);
+    setInputTo(to);
+
+    setShowInputName(false);
+    setShowInputFrom(false);
+    setShowInputTo(false)
+  }
+
   return (
     <div className="train-info">
-      <p className="train-info__item">{name}</p>
-      <p className="train-info__item">{from}</p>
-      <p className="train-info__item"> {to}</p>
-      <div className="train-info__item">
+      <p
+        className="train-info__item"
+        onClick={() => setShowInputName(true)}
+      >
+        {showInputName
+          ? <input
+            value={inputName}
+            onChange={event => setInputName(event.target.value)}
+            type="text"
+          />
+          : inputName}
+      </p>
+
+      <p
+        className="train-info__item"
+        onClick={() => setShowInputFrom(true)}
+      >
+        {showInputFrom
+          ? <input
+            value={inputFrom}
+            onChange={event => setInputFrom(event.target.value)}
+            type="text"
+          />
+          : inputFrom}
+      </p>
+
+      <p
+        className="train-info__item"
+        onClick={() => setShowInputTo(true)}
+      >
+        {showInputTo
+          ? <input
+            value={inputTo}
+            onChange={event => setInputTo(event.target.value)}
+            type="text"
+          />
+          : inputTo}
+      </p>
+
+      <div
+        className="train-info__item"
+      >
         <DatePicker
           className=""
           showTimeSelect
@@ -51,6 +121,26 @@ export const TrainInfo: FC<Props> = ({ train }) => {
         </p>
       </div>
 
+      <button
+        className="train-info__item-remove"
+        onClick={() => removeTrain(id)}
+      >
+        Delete
+      </button>
+
+      <button
+        className="train-info__item-save"
+        onClick={patchTrain}
+      >
+        Save
+      </button>
+
+      <button
+        className="train-info__item-cancel"
+        onClick={cancelPatching}
+      >
+        Cancel
+      </button>
     </div>
   );
 }
