@@ -13,7 +13,7 @@
   - to: string,
   - departure: Date,
   - arrival: Date
-  - You can also pre-fill your data by sending post request to https://kir8mir.github.io/train-schedule/
+  - You can also pre-fill your data by sending post request to [https://kir8mir.github.io/train-schedule/](https://train-server.onrender.com/trains)
 
 # Introduction
 Here is the simple trains schedule app, where you can ADD, CHANGE, DELETE, SEARCH and SORT every data 
