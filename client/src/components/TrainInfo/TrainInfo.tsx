@@ -56,7 +56,7 @@ export const TrainInfo: FC<Props> = ({ train }) => {
 
   return (
     <div
-      className={classnames('train-info', {'none': isRemoved})}
+      className={classnames('train-info', { 'none': isRemoved })}
     >
       <p
         className="train-info__item name"
@@ -107,7 +107,8 @@ export const TrainInfo: FC<Props> = ({ train }) => {
         />
 
         <p className="date-time">
-          {`${departureDate.getHours()}:${departureDate.getMinutes()}`}
+          {`${departureDate.getUTCHours()}:${departureDate.getUTCMinutes().toString().length === 1 ? `0${departureDate.getUTCMinutes()}` : departureDate.getUTCMinutes()
+            }`}
         </p>
       </div>
 
@@ -120,7 +121,8 @@ export const TrainInfo: FC<Props> = ({ train }) => {
           timeClassName={handleColor}
         />
         <p className="date-time">
-          {`${arrivalDate.getHours()}:${arrivalDate.getMinutes()}`}
+        {`${arrivalDate.getUTCHours()}:${arrivalDate.getUTCMinutes().toString().length === 1 ? `0${arrivalDate.getUTCMinutes()}` : arrivalDate.getUTCMinutes()
+            }`}
         </p>
       </div>
 
