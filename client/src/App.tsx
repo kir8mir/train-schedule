@@ -14,19 +14,6 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [filteredTrains, setFilteredTrains] = useState([]);
 
-
-  // const sort = () => {
-  //   switch (sortType) {
-  //     case 'NONE':
-  //       setFilteredTrains(filteredTrains);
-  //       break;
-  //     case 'NAME':
-  //       setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t1.name.localeCompare(t2.name)));
-  //       break;
-  //   }
-  // }
-
-
   useEffect(() => {
     getTrains().then(res => {
       setTrains(res.data)
