@@ -5,7 +5,7 @@
 - Nest.js
 - MongoDB/Mongoose
 - React
-Server deployed on Render Hosting
+- Server deployed on Render Hosting
 
 # DB Train object structure
   - id: string,
