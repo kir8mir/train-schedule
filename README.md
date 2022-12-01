@@ -2,6 +2,6 @@
 - [THE DEMO](https://kir8mir.github.io/train-schedule/)
 
 # Stack
- -Nest.js
- -MongoDB/Mongoose
- -React
+- Nest.js
+- MongoDB/Mongoose
+- React
