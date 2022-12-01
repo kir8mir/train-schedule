@@ -7,12 +7,21 @@ export const Search: FC = () => {
 
   const [startDate, setStartDate] = useState(new Date());
 
+  let handleColor = (time: Date) => {
+    return time.getHours() > 12 ? "text-success" : "text-error";
+  };
+
+  console.log(typeof startDate, startDate);
+  
   return (
     <section className="search">
-      <input className="search__item" type="text" placeholder='Kyiv' />
-      <input className="search__item" type="text" placeholder='Lviv' />
       <input className="search__item" type="text" placeholder='77H' />
-      <DatePicker className="search__item-date" selected={startDate} onChange={(date: Date) => setStartDate(date)} />
+      <DatePicker
+      showTimeSelect
+      selected={startDate}
+      onChange={(date: Date) => setStartDate(date)}
+      timeClassName={handleColor}
+    />
     </section>
   );
 }

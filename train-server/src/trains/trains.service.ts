@@ -1,18 +1,28 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Train, RouteInfo } from './train.model';
+import { Train } from './train.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 @Injectable()
 export class TrainsService {
-  trains: Train[] = [];
-
   constructor(
     @InjectModel('Train') private readonly trainModel: Model<Train>,
   ) {}
 
-  async addTrain(name: string, routeInfo: RouteInfo) {
-    const newTrain = new this.trainModel({ name, routeInfo });
+  async addTrain(
+    name: string,
+    from: string,
+    to: string,
+    departure: Date,
+    arrival: Date,
+  ) {
+    const newTrain = new this.trainModel({
+      name,
+      from,
+      to,
+      departure,
+      arrival,
+    });
     await newTrain.save();
 
     return newTrain;
@@ -24,7 +34,10 @@ export class TrainsService {
     return trains.map((train) => ({
       id: train.id,
       name: train.name,
-      routeInfo: train.routeInfo,
+      from: train.from,
+      to: train.to,
+      departure: train.departure,
+      arrival: train.arrival,
     }));
   }
 
@@ -34,20 +47,43 @@ export class TrainsService {
     return await {
       id: train.id,
       name: train.name,
-      routeInfo: train.routeInfo,
+      from: train.from,
+      to: train.to,
+      departure: train.departure,
+      arrival: train.arrival,
     };
   }
 
-  async updateTrain(trainId: string, name: string, routeInfo: RouteInfo) {
+  async updateTrain(
+    trainId: string,
+    name: string,
+    from: string,
+    to: string,
+    departure: Date,
+    arrival: Date,
+  ) {
     const updatedTrain = await this.findTrain(trainId);
 
     if (name) {
       updatedTrain.name = name;
     }
 
-    if (routeInfo) {
-      updatedTrain.routeInfo = routeInfo;
+    if (to) {
+      updatedTrain.to = to;
     }
+
+    if (from) {
+      updatedTrain.from = from;
+    }
+
+    if (departure) {
+      updatedTrain.departure = departure;
+    }
+
+    if (arrival) {
+      updatedTrain.arrival = arrival;
+    }
+
     updatedTrain.save();
     return updatedTrain;
   }

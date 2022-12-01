@@ -10,7 +10,6 @@ export const Schedule:FC = () => {
         <h4 className="titles__number">№ Train</h4>
         <h4 className="titles__number">FROM/TO</h4>
         <h4 className="titles__number">Date</h4>
-        <h4 className="titles__number">Route Time</h4>
       </div>
 
       <TrainInfo />
