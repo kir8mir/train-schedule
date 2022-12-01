@@ -1,14 +1,37 @@
 .search {
   width: 100%;
+  display: flex;
 
   &__item {
-    width: 22%;
+    width: 87%;
+    background-color: floralwhite;
+    padding: 15px;
+    font-size: 20px;
+  }
+
+  &__item-date {
+    min-width: 100%;
+    height: 100%;
     background-color: floralwhite;
     padding: 15px;
   }
-  &__item-date {
+
+  &__item-date-picker {
+    cursor: pointer;
+    height: 30px;
+  }
+
+  &__filter {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  &__btn {
     width: 100%;
-    background-color: floralwhite;
-    padding: 15px;
+  }
+
+  .react-datepicker-wrapper {
+    width: 10%;
+    height: 100%;
   }
 }

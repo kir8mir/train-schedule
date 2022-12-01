@@ -10,16 +10,23 @@ export const Search: FC = () => {
   let handleColor = (time: Date) => {
     return time.getHours() > 12 ? "text-success" : "text-error";
   };
-  
+
   return (
     <section className="search">
       <input className="search__item" type="text" placeholder='77H' />
-      <DatePicker
-      showTimeSelect
-      selected={startDate}
-      onChange={(date: Date) => setStartDate(date)}
-      timeClassName={handleColor}
-    />
+      <div className="search__filter">
+        <DatePicker
+          className="search__item-date-picker"
+          showTimeSelect
+          selected={startDate}
+          onChange={(date: Date) => setStartDate(date)}
+          timeClassName={handleColor}
+        />
+
+        <button className="search__btn">Filter</button>
+        <button className="search__btn">Cancel</button>
+      </div>
+
     </section>
   );
 }

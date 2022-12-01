@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import { FC, useState } from 'react';
 import AddTrain from '../AddTrain';
 import TrainInfo from '../TrainInfo';
@@ -15,7 +16,7 @@ export const Schedule: FC<Props> = ({ trains }) => {
   return (
     <section className="schedule">
       <span
-        className="new-train"
+        className={classnames('new-train', {'onHover': newTrain})}
         onClick={() => setNewTrain(value => !value)}
       >
         Add new Train
