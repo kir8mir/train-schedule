@@ -11,13 +11,16 @@ interface Props {
   setFilteredTrains: (arr: any) => void;
 }
 
-export const Schedule: FC<Props> = ({ trains, filteredTrains, setFilteredTrains }) => {
+export const Schedule: FC<Props> = ({
+  trains,
+  filteredTrains,
+  setFilteredTrains
+}) => {
 
   const [newTrain, setNewTrain] = useState(false);
   const [sortType, setSortType] = useState('NONE');
 
   const [upDown, setUpDown] = useState(false);
-  
 
   const sort = () => {
     switch (sortType) {
@@ -26,20 +29,26 @@ export const Schedule: FC<Props> = ({ trains, filteredTrains, setFilteredTrains 
         break;
       case 'NAME':
         upDown
-          ? setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t1.name.localeCompare(t2.name)))
-          : setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t2.name.localeCompare(t1.name)));
+          ? setFilteredTrains([...filteredTrains].sort(
+            (t1: Train, t2: Train) => t1.name.localeCompare(t2.name)))
+          : setFilteredTrains([...filteredTrains].sort(
+            (t1: Train, t2: Train) => t2.name.localeCompare(t1.name)));
         break;
 
       case 'FROM':
         upDown
-          ? setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t1.from.localeCompare(t2.from)))
-          : setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t2.from.localeCompare(t1.from)));
+          ? setFilteredTrains([...filteredTrains].sort(
+            (t1: Train, t2: Train) => t1.from.localeCompare(t2.from)))
+          : setFilteredTrains([...filteredTrains].sort(
+            (t1: Train, t2: Train) => t2.from.localeCompare(t1.from)));
         break;
 
       case 'TO':
         upDown
-          ? setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t1.to.localeCompare(t2.to)))
-          : setFilteredTrains([...filteredTrains].sort((t1: Train, t2: Train) => t2.to.localeCompare(t1.to)));
+          ? setFilteredTrains([...filteredTrains].sort(
+            (t1: Train, t2: Train) => t1.to.localeCompare(t2.to)))
+          : setFilteredTrains([...filteredTrains].sort(
+            (t1: Train, t2: Train) => t2.to.localeCompare(t1.to)));
         break;
 
       case 'DEPARTURE':
@@ -58,9 +67,6 @@ export const Schedule: FC<Props> = ({ trains, filteredTrains, setFilteredTrains 
             (t1: Train, t2: Train) => new Date(t2.arrival).getTime() - new Date(t1.arrival).getTime()))
         break;
     }
-
-    console.log(sortType);
-
   }
 
   useEffect(() => {

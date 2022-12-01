@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { getTrains } from './api/api';
-import { Train } from './_types/train';
 
 import Search from './components/Search';
 import Schedule from './components/Schedule';
@@ -21,9 +19,7 @@ function App() {
         setFilteredTrains(res.data);
       }
     });
-    console.log(filteredTrains);
-    
-    // sort();
+
   }, [searchValue]);
 
   return (
@@ -35,7 +31,11 @@ function App() {
         trains={trains}
 
       />
-      <Schedule filteredTrains={filteredTrains} trains={trains} setFilteredTrains={setFilteredTrains} />
+      <Schedule
+        filteredTrains={filteredTrains}
+        trains={trains}
+        setFilteredTrains={setFilteredTrains}
+      />
     </div>
   );
 }

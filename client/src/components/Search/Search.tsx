@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useCallback } from 'react';
+import { FC, useEffect } from 'react';
 import './Search.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import { Train } from '../../_types/train';
@@ -24,7 +24,6 @@ export const Search: FC<Props> = ({
   const filter = () => {
     const filtered = [...trains].filter(
       (train: Train) => train.name.toLowerCase().includes(searchValue.toLowerCase()));
-    console.log(11111123232);
 
     setSearchValue(searchValue)
     setFilteredTrains(filtered);

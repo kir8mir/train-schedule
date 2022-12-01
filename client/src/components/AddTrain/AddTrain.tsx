@@ -7,7 +7,7 @@ interface Props {
   setFilteredTrains: any;
 }
 
-export const AddTrain:FC<Props> = ({setFilteredTrains}) => {
+export const AddTrain: FC<Props> = ({ setFilteredTrains }) => {
   const [newName, setNewName] = useState('');
   const [newFrom, setNewFrom] = useState('');
   const [newTo, setNewTo] = useState('');
@@ -27,16 +27,16 @@ export const AddTrain:FC<Props> = ({setFilteredTrains}) => {
         newDeparture,
         newArrival);
 
-        setNewName('');
-        setNewFrom('');
-        setNewTo('');
-        setFilteredTrains((arr: any) => [...arr, {
-          name: newName,
-          from: newFrom,
-          to: newTo,
-          departure: newDeparture,
-          arrival: newArrival,
-        }])
+      setNewName('');
+      setNewFrom('');
+      setNewTo('');
+      setFilteredTrains((arr: any) => [...arr, {
+        name: newName,
+        from: newFrom,
+        to: newTo,
+        departure: newDeparture,
+        arrival: newArrival,
+      }])
     } else {
       alert('Fill all sections');
     }
