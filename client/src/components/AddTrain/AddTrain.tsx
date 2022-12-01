@@ -65,13 +65,16 @@ export const AddTrain: FC<Props> = ({ setFilteredTrains }) => {
         value={newTo}
         onChange={event => setNewTo(event.target.value)}
       />
-      <DatePicker
-        className='add-train__date'
-        showTimeSelect
-        selected={newDeparture}
-        onChange={(date: Date) => setNewDeparture(date)}
-        timeClassName={handleColor}
-      />
+      <div className='departure'>
+        <DatePicker
+          className='add-train__date'
+          showTimeSelect
+          selected={newDeparture}
+          onChange={(date: Date) => setNewDeparture(date)}
+          timeClassName={handleColor}
+        />
+      </div>
+
       <DatePicker
         className='add-train__date'
         showTimeSelect
