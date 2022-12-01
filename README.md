@@ -7,3 +7,10 @@
 - React
 
 # DB Train object structure
+{
+  id: string,
+  from: string.
+  to: string,
+  departure: Date,
+  arrival: Date
+}
