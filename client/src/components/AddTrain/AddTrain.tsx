@@ -22,6 +22,10 @@ export const AddTrain: FC = () => {
         newTo,
         newDeparture,
         newArrival);
+
+        setNewName('');
+        setNewFrom('');
+        setNewTo('');
     } else {
       alert('Fill all sections');
     }
@@ -69,7 +73,7 @@ export const AddTrain: FC = () => {
         type='submit'
         onClick={addNewTrain}
       >
-        Save
+        Add
       </button>
     </section>
   );

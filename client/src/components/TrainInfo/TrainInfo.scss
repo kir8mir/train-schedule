@@ -3,7 +3,10 @@
   display: grid;
   width: 100%;
   grid-template-columns: 20% 20% 20% 20% 20%;
-  
+  font-size: 20px;
+  margin-top: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
   &__item {
     display: flex;
     flex-direction: column;
@@ -11,11 +14,57 @@
     background-color: azure;
     border: 1px solid black;
     width: 100%;
+    min-height: 60px;
+  }
+
+  input {
+    height: 100%;
+    font-size: 20px;
+  }
+
+  .date {
+    flex-direction: row;
+
+    .date-picker {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .date-time {
+      width: 50%;
+      text-align: center;
+      cursor: no-drop;
+      font-size: 30px;
+    }
+  }
+
+  &__item-actions {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    right: -5%;
+    top: 0;
+    bottom: 0;
+    padding: 0 10px;
+
+    .save {
+      height: 50%;
+      background-color: forestgreen;
+    }
+
+    .cancel {
+      height: 50%;
+      background-color: crimson;
+    }
   }
 
   &__item-remove {
     position: absolute;
     right: -5%;
+    top: 0;
+    bottom: 0;
+    padding: 0 10px;
   }
-  
+
 }

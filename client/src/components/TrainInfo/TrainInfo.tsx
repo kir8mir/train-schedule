@@ -92,55 +92,55 @@ export const TrainInfo: FC<Props> = ({ train }) => {
           : inputTo}
       </p>
 
-      <div
-        className="train-info__item"
-      >
+      <div className="train-info__item date">
         <DatePicker
-          className=""
+          className="date-picker"
           showTimeSelect
           selected={departureDate}
           onChange={(date: Date) => setDepartureDate(date)}
           timeClassName={handleColor}
         />
 
-        <p className="item__date-time">
+        <p className="date-time">
           {`${departureDate.getHours()}:${departureDate.getMinutes()}`}
         </p>
       </div>
 
-      <div className="train-info__item item__date">
+      <div className="train-info__item date">
         <DatePicker
-          className="date"
+          className="date-picker"
           showTimeSelect
           selected={arrivalDate}
           onChange={(date: Date) => setArrivalDate(date)}
           timeClassName={handleColor}
         />
-        <p className="item__date-time">
+        <p className="date-time">
           {`${arrivalDate.getHours()}:${arrivalDate.getMinutes()}`}
         </p>
       </div>
 
-      <button
-        className="train-info__item-remove"
-        onClick={() => removeTrain(id)}
-      >
-        Delete
-      </button>
+      {showInputName || showInputFrom || showInputTo
+        ? <div className="train-info__item-actions">
+          <button
+            className="save"
+            onClick={patchTrain}
+          >
+            Save
+          </button>
 
-      <button
-        className="train-info__item-save"
-        onClick={patchTrain}
-      >
-        Save
-      </button>
-
-      <button
-        className="train-info__item-cancel"
-        onClick={cancelPatching}
-      >
-        Cancel
-      </button>
+          <button
+            className="cancel"
+            onClick={cancelPatching}
+          >
+            Cancel
+          </button>
+        </div>
+        : <button
+          className="train-info__item-remove"
+          onClick={() => removeTrain(id)}
+        >
+          Delete
+        </button>}
     </div>
   );
 }

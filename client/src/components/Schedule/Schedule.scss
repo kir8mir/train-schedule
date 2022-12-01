@@ -1,7 +1,23 @@
 .schedule {
   width: 100%;
+  background-color:blanchedalmond;
+
+  .new-train {
+    display: block;
+    font-size: 15px;
+    background-color:darkseagreen;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 25px;
+
+    &:hover {
+      background-color:coral;
+    }
+  }
 
   .titles {
+    position: relative;
     display: grid;
     width: 100%;
     grid-template-columns: 20% 20% 20% 20% 20%;
@@ -11,6 +27,9 @@
       background-color: blanchedalmond;
       border: 1px solid black;
       width: 100%;
+      font-size: 20px;
+      font-weight: 600;
+      height: 100%;
     }
   }
 }
