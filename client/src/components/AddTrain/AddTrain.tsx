@@ -34,7 +34,7 @@ export const AddTrain: FC = () => {
   return (
     <section className="add-train">
       <input
-        className='add-train__input'
+        className='add-train__input name'
         type="text"
         placeholder='772Y'
         value={newName}

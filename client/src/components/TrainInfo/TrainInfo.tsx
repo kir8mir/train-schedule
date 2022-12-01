@@ -3,6 +3,7 @@ import './TrainInfo.scss';
 import DatePicker from 'react-datepicker';
 import { Train } from '../../_types/train';
 import { removeTrain, updateTrain } from '../../api/api';
+import classnames from 'classnames';
 
 interface Props {
   train: Train;
@@ -22,6 +23,8 @@ export const TrainInfo: FC<Props> = ({ train }) => {
 
   const [showInputTo, setShowInputTo] = useState(false);
   const [inputTo, setInputTo] = useState(to);
+
+  const [isRemoved, setIsRemoved] = useState(false);
 
   let handleColor = (time: Date) => {
     return time.getHours() > 12 ? "text-success" : "text-error";
@@ -52,7 +55,9 @@ export const TrainInfo: FC<Props> = ({ train }) => {
   }
 
   return (
-    <div className="train-info">
+    <div
+      className={classnames('train-info', {'none': isRemoved})}
+    >
       <p
         className="train-info__item"
         onClick={() => setShowInputName(true)}
@@ -137,7 +142,10 @@ export const TrainInfo: FC<Props> = ({ train }) => {
         </div>
         : <button
           className="train-info__item-remove"
-          onClick={() => removeTrain(id)}
+          onClick={() => {
+            setIsRemoved(true);
+            removeTrain(id);
+          }}
         >
           Delete
         </button>}

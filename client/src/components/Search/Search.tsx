@@ -3,9 +3,19 @@ import './Search.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from 'react-datepicker';
 
-export const Search: FC = () => {
+interface Props {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  startDate: Date;
+  setStartDate: (value: Date) => void;
+}
 
-  const [startDate, setStartDate] = useState(new Date());
+export const Search: FC<Props> = ({
+  searchValue,
+  setSearchValue,
+  setStartDate,
+  startDate,
+}) => {
 
   let handleColor = (time: Date) => {
     return time.getHours() > 12 ? "text-success" : "text-error";
@@ -13,20 +23,13 @@ export const Search: FC = () => {
 
   return (
     <section className="search">
-      <input className="search__item" type="text" placeholder='77H' />
-      <div className="search__filter">
-        <DatePicker
-          className="search__item-date-picker"
-          showTimeSelect
-          selected={startDate}
-          onChange={(date: Date) => setStartDate(date)}
-          timeClassName={handleColor}
-        />
-
-        <button className="search__btn">Filter</button>
-        <button className="search__btn">Cancel</button>
-      </div>
-
+      <input
+        className="search__item"
+        type="text"
+        placeholder='Please type Train Number for searching'
+        value={searchValue}
+        onChange={(event) => setSearchValue(event.target.value)}
+      />
     </section>
   );
 }
