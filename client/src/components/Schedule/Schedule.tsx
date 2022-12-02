@@ -135,13 +135,15 @@ export const Schedule: FC<Props> = ({
       {
         newTrain
           ? <AddTrain setFilteredTrains={setFilteredTrains} />
-          : filteredTrains.length
-            ? filteredTrains.map(train => (
-              <TrainInfo key={train.id} train={train} />
-            ))
-            : trains.map(train => (
-              <TrainInfo key={train.id} train={train} />
-            ))
+          : trains.length
+            ? filteredTrains.length
+              ? filteredTrains.map(train => (
+                <TrainInfo key={train.id} train={train} />
+              ))
+              : trains.map(train => (
+                <TrainInfo key={train.id} train={train} />
+              ))
+            : <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       }
 
     </section>
