@@ -13,6 +13,10 @@
   - to: string,
   - departure: Date,
   - arrival: Date
-
+  - You can also pre-fill your data by sending post request to https://train-server.onrender.com/trains
 # Introduction
 Here is the simple trains schedule app, where you can ADD, CHANGE, DELETE, SEARCH and SORT every data 
+
+
+https://user-images.githubusercontent.com/49589547/205089155-f9090f5a-d42c-4bfb-87e9-536d8fb46207.mp4
+
